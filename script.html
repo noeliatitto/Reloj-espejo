@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reloj en el Espejo</title>
+</head>
+<body>
+
+<h2>Calcular Hora Real con Java Script</h2>
+
+Ingrese hora vista en el espejo (HH:MM):
+<input type="text" id="hora" placeholder="Ej: 10:25">
+<button onclick="calcularHora()">Calcular</button>
+
+<h3 id="resultado"></h3>
+
+<script>
+
+function calcularHora() {
+
+    let entrada = document.getElementById("hora").value;
+
+    let formato = /^\d{1,2}:\d{2}$/;
+
+    if (!formato.test(entrada)) {
+        document.getElementById("resultado").innerHTML =
+        "Formato incorrecto. Use HH:MM";
+        return;
+    }
+
+    let partes = entrada.split(":");
+
+    let hora = parseInt(partes[0]);
+    let minuto = parseInt(partes[1]);
+
+    if (hora > 12 || minuto > 60) {
+        document.getElementById("resultado").innerHTML =
+        "Formato de hora o minuto no válido";
+    }
+    else {
+
+        let hora_real = 12 - hora;
+        let minuto_real = 60 - minuto;
+
+        if (minuto_real == 60) {
+            minuto_real = 0;
+        }
+
+        if (hora_real == 0) {
+            hora_real = 12;
+        }
+
+        hora_real = hora_real.toString().padStart(2, "0");
+        minuto_real = minuto_real.toString().padStart(2, "0");
+
+        document.getElementById("resultado").innerHTML =
+        "Hora real: " + hora_real + ":" + minuto_real;
+    }
+}
+
+</script>
+
+</body>
+</html>
