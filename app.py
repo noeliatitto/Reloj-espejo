@@ -14,3 +14,4 @@ else:
         hora_real = 12
 
     print(f"{hora_real:02d}:{minuto_real:02d}")
+    print("Hola")
